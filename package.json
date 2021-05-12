@@ -2,7 +2,7 @@
   "name": "songviz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "license": "",
   "dependencies": {
     "express": "^4.17.1",
+    "socket.io": "^4.1.1",
     "spotify-web-api-node": "^5.0.0"
   }
 }

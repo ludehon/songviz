@@ -1,6 +1,12 @@
 var SpotifyWebApi = require('spotify-web-api-node')
-const express = require('express')
-const fs = require('fs');
+var fs = require('fs');
+
+// server
+var express = require('express');
+var http = require('http')
+var app = express();
+var server = http.createServer(app)
+var io = require('socket.io')(server);
 
 const scopes = [
     'ugc-image-upload',
@@ -32,8 +38,6 @@ var spotifyApi = new SpotifyWebApi({
     clientSecret: credentials['clientSecret'],
     redirectUri: credentials['redirectUri']
 });
-
-const app = express();
 
 app.use("/", express.static(__dirname + '/public'));
 
@@ -97,6 +101,10 @@ app.get('/home', function(request, response){
     response.sendFile('public/home.html', { root: __dirname });
 });
 
-app.listen(8888,() => {
+server.listen(8888,() => {
     console.log("Server up and running")
 })
+
+io.on('connection', () => {
+    console.log('a user connected');
+});
