@@ -35,6 +35,8 @@ var spotifyApi = new SpotifyWebApi({
 
 const app = express();
 
+app.use("/", express.static(__dirname + '/public'));
+
 app.get('/login', function(req, res){
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
@@ -92,7 +94,7 @@ app.get('/home', function(request, response){
     } else {
         console.log("NO ACCESS TOKEN")
     }
-    response.sendFile('home.html', { root: __dirname });
+    response.sendFile('public/home.html', { root: __dirname });
 });
 
 app.listen(8888,() => {
