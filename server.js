@@ -105,12 +105,19 @@ server.listen(8888,() => {
     console.log("Server up and running")
 })
 
+// when a connection is establised, define functions for the connected socket
 io.on('connection', (socket) => {
-    console.log('a user connected');
-
     socket.on("get_current_song", () => {
-        console.log("emitting current song...")
-        socket.emit("current_song", "not afraid - eminem");
+        current_song = "";
+        spotifyApi.getMyCurrentPlayingTrack()
+        .then(function(data) {
+            // if new data then send album cover url to client
+            album_image_link = data.body.item.album.images[2].url
+            song_name = data.body.item.name
+            socket.emit("current_song", {song_name, album_image_link});
+        }, function(err) {
+            socket.emit("current_song", "err");
+        });
     });
 });
 
