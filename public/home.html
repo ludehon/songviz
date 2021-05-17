@@ -3,14 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
         <title>SongViz</title>
+        
     </head>
-    <body style="background: rgb(215, 197, 218);">
-        <h1>SongViz home</h1>
+    <body>
+        <h1>SongViz</h1>
         
         <div>
-            <h2>You are logged in</h2>
-            <p id="current_song">Currrent song : </p>
+            <p id="current_song">song_info</p>
+            <div id="song_lyrics" class="lyrics">lyrics</div>
         </div>
         
         <script src="/socket.io/socket.io.js"></script>

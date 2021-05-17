@@ -1,5 +1,6 @@
 var SpotifyWebApi = require('spotify-web-api-node')
 var fs = require('fs');
+const lyricsFinder = require('lyrics-finder');
 
 // server
 var express = require('express');
@@ -7,6 +8,9 @@ var http = require('http')
 var app = express();
 var server = http.createServer(app)
 var io = require('socket.io')(server);
+
+var old_song_name = ""
+var old_artist_name = ""
 
 const scopes = [
     'ugc-image-upload',
@@ -41,10 +45,12 @@ var spotifyApi = new SpotifyWebApi({
 
 app.use("/", express.static(__dirname + '/public'));
 
+// redirect to the spotify auth page
 app.get('/login', function(req, res){
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
 
+// after auth, spotify callback this function
 app.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
@@ -111,14 +117,25 @@ io.on('connection', (socket) => {
         current_song = "";
         spotifyApi.getMyCurrentPlayingTrack()
         .then(function(data) {
-            // if new data then send album cover url to client
-            album_image_link = data.body.item.album.images[2].url
             song_name = data.body.item.name
-            socket.emit("current_song", {song_name, album_image_link});
+            artist_name = data.body.item.artists[0].name
+            // if new data then send song data to client
+            if ((song_name != old_song_name) && (artist_name != old_artist_name)) {
+                old_song_name = song_name
+                old_artist_name = artist_name
+                album_image_link = data.body.item.album.images[2].url
+                // call the async function to get lyrics
+                song_lyrics = getLyrics(artist_name, song_name, socket)
+                socket.emit("current_song", {song_name, album_image_link, artist_name, song_lyrics});
+            }
         }, function(err) {
             socket.emit("current_song", "err");
         });
     });
 });
 
+async function getLyrics(artist, title, socket) {
+    let lyrics = await lyricsFinder(artist, title) || "Not Found!";
+    socket.emit("lyrics", lyrics);
+}
 
