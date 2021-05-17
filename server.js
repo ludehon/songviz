@@ -105,6 +105,13 @@ server.listen(8888,() => {
     console.log("Server up and running")
 })
 
-io.on('connection', () => {
+io.on('connection', (socket) => {
     console.log('a user connected');
+
+    socket.on("get_current_song", () => {
+        console.log("emitting current song...")
+        socket.emit("current_song", "not afraid - eminem");
+    });
 });
+
+
