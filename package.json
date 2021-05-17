@@ -2,14 +2,17 @@
   "name": "songviz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "",
   "dependencies": {
+    "colorthief": "^2.3.2",
     "express": "^4.17.1",
+    "lyrics-finder": "^21.7.0",
+    "socket.io": "^4.1.1",
     "spotify-web-api-node": "^5.0.0"
   }
 }

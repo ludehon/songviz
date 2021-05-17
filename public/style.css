@@ -1,0 +1,16 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;   
+}
+
+h1 {
+    font-size: 40px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.lyrics {
+    font-size: 50px;
+}
