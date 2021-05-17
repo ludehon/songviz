@@ -9,6 +9,7 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "colorthief": "^2.3.2",
     "express": "^4.17.1",
     "lyrics-finder": "^21.7.0",
     "socket.io": "^4.1.1",

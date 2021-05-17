@@ -123,7 +123,7 @@ io.on('connection', (socket) => {
             if ((song_name != old_song_name) && (artist_name != old_artist_name)) {
                 old_song_name = song_name
                 old_artist_name = artist_name
-                album_image_link = data.body.item.album.images[2].url
+                album_image_link = data.body.item.album.images[0].url
                 // call the async function to get lyrics
                 song_lyrics = getLyrics(artist_name, song_name, socket)
                 socket.emit("current_song", {song_name, album_image_link, artist_name, song_lyrics});
