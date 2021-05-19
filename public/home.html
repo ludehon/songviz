@@ -7,14 +7,17 @@
         <title>SongViz</title>
         
     </head>
-    <body id="body">
-        <!-- <h1>SongViz</h1> -->
-        
-        <div>
-            <p id="current_song">song_info</p>
+    <body>
+        <div class="background_image" id="background_image"></div>
+
+        <div class="content" id="content">
+            <div class="song_info">
+                <img class="album_image" id="album_image"></img>
+                <div class="current_song" id="current_song">song</div>
+            </div>
             <div id="song_lyrics" class="lyrics">lyrics</div>
         </div>
-        
+
         <script src="/socket.io/socket.io.js"></script>
         <script type="text/javascript" src="home.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
