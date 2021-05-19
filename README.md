@@ -1,7 +1,7 @@
 # songviz
 
 `npm install`
-`node .\index.js`
+`node start`
 
 Access root from http://localhost:8888/
 
