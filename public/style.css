@@ -21,6 +21,7 @@ p {
 
 .lyrics {
     font-size: 50px;
+    margin-top: 20px;
 }
 
 .background_image {
@@ -33,9 +34,9 @@ p {
     left: 0px;
     background-size: cover;
     filter: blur(15px);
-  }
-  
-  .content {
+}
+
+.content {
     position: relative;
     left: 0;
     right: 0;
@@ -43,4 +44,12 @@ p {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
-  }
+}
+
+.album_image {
+    width: 20%;
+}
+
+.current_song {
+    margin-top: 5px;
+}

@@ -7,7 +7,7 @@ socket.emit("get_current_song", true)
 // update song_info
 socket.on("current_song", (data) => {
     console.log("-> on current_song")
-    document.getElementById("current_song").textContent = data.song_name + " by " + data.artist_name;
+    document.getElementById("current_song").innerHTML = data.song_name + "<br/>" + data.artist_name;
     setTheme(data.album_image_link)
 });
 
@@ -44,10 +44,11 @@ function setTheme(albumURL) {
             g = colors[1];
             b = colors[2];
             console.log("setTheme::colors " + colors)
-            // document.body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
-            // document.body.style.backgroundImage = "url('" + albumURL + "')";
 
-            document.getElementById("background_image").style.backgroundImage = "url('" + albumURL + "')";
+            document.body.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+            document.getElementById("album_image").src = albumURL;
+
+            // document.getElementById("background_image").style.backgroundImage = "url('" + albumURL + "')";
 
             if (((r + g + b) / 3) > 130) {
                 text_color = "rgb(" + (+r-120) + "," + (+g-120) + "," + (+b-120) + ")";
