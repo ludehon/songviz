@@ -1,6 +1,13 @@
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
-    text-align: justify;   
+    text-align: justify;
+    position: relative;
+    margin: 0;
+    height: 100%;   
 }
 
 h1 {
@@ -9,8 +16,31 @@ h1 {
 
 p {
     font-size: 30px;
+    margin-top: 0;
 }
 
 .lyrics {
     font-size: 50px;
 }
+
+.background_image {
+    position: fixed;
+    z-index: 1;
+    display: block;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-size: cover;
+    filter: blur(15px);
+  }
+  
+  .content {
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+  }

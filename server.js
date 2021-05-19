@@ -113,19 +113,22 @@ server.listen(8888,() => {
 
 // when a connection is establised, define functions for the connected socket
 io.on('connection', (socket) => {
-    socket.on("get_current_song", () => {
+    socket.on("get_current_song", (reset) => {
+        console.log("-> get_current_song")
         current_song = "";
         spotifyApi.getMyCurrentPlayingTrack()
         .then(function(data) {
             song_name = data.body.item.name
             artist_name = data.body.item.artists[0].name
             // if new data then send song data to client
-            if ((song_name != old_song_name) && (artist_name != old_artist_name)) {
+            // console.log("song " + song_name + " artist " + artist_name + "  reset " + reset)
+            if (((song_name != old_song_name) || (artist_name != old_artist_name)) || reset) {
                 old_song_name = song_name
                 old_artist_name = artist_name
                 album_image_link = data.body.item.album.images[0].url
                 // call the async function to get lyrics
                 song_lyrics = getLyrics(artist_name, song_name, socket)
+                console.log("current_song ->")
                 socket.emit("current_song", {song_name, album_image_link, artist_name, song_lyrics});
             }
         }, function(err) {
@@ -135,7 +138,9 @@ io.on('connection', (socket) => {
 });
 
 async function getLyrics(artist, title, socket) {
+    console.log("-> getLyrics")
     let lyrics = await lyricsFinder(artist, title) || "Not Found!";
+    console.log("lyrics ->")
     socket.emit("lyrics", lyrics);
 }
 
