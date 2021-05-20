@@ -26,6 +26,7 @@ function askSong() {
     } else {
         console.log("disconnected")
         clearInterval(inter)
+        document.getElementById("connection_status").innerHTML = "🔌";
     }
 }
 

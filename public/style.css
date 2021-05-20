@@ -19,6 +19,16 @@ p {
     margin-top: 0;
 }
 
+input {
+    border-radius: 35px;
+    border: white;
+    /* background-color: black; */
+    background-color: rgb(29, 185, 84);
+    font-size: 32px;
+    font-weight: bold;
+    padding: 13px;
+}
+
 .lyrics {
     font-size: 50px;
     margin-top: 20px;
@@ -52,4 +62,12 @@ p {
 
 .current_song {
     margin-top: 5px;
+    font-size: 30px;
+}
+
+.connection_status {
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-size: 35px;
 }
